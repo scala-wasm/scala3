@@ -55,7 +55,7 @@ object Build {
   /** Version of the scala-wasm scalajs-ir library with WIT support.
    *  This version includes WasmInterfaceTypes, WitFunctionApply, WitNativeMemberDef, etc.
    */
-  val scalaWasmIRVersion = "1.20.2-wasm.1-SNAPSHOT"
+  val scalaWasmIRVersion = "1.21.1-wasm.4"
 
   /** Version of the Scala compiler used to build the artifacts.
    *  Reference version should track the latest version pushed to Maven:
@@ -64,7 +64,7 @@ object Build {
    *
    *  Warning: Change of this variable needs to be consulted with `expectedTastyVersion`
    */
-  val referenceVersion = "3.8.2-RC1"
+  val referenceVersion = "3.8.2"
 
   /** Version of the Scala compiler targeted in the current release cycle
    *  Contains a version without RC/SNAPSHOT/NIGHTLY specific suffixes
@@ -84,7 +84,7 @@ object Build {
    *  During release candidate cycle incremented by the release officer before publishing a subsequent RC version;
    *  During final, stable release is set exactly to `developedVersion`.
   */
-  val baseVersion = s"$developedVersion-RC1-wasm"
+  val baseVersion = s"$developedVersion-RC1-wasm.4"
 
   /** The version of TASTY that should be emitted, checked in runtime test
    *  For defails on how TASTY version should be set see related discussions:
@@ -102,7 +102,7 @@ object Build {
    *      - in release candidate branch is experimental if {patch == 0}
    *      - in stable release is always non-experimetnal
    */
-  val expectedTastyVersion = "28.9-experimental-1"
+  val expectedTastyVersion = "28.8"
   checkReleasedTastyVersion()
 
   /** Final version of Scala compiler, controlled by environment variables. */
@@ -2216,8 +2216,6 @@ object Build {
           .withModuleKind(ModuleKind.ESModule)
           .withWasmFeatures { prevFeatures =>
             prevFeatures
-              .withTargetPureWasm(true)
-              .withComponentModel(true)
               .withWitDirectory(Some(witDir.getAbsolutePath))
               .withWitWorld(witWorld)
           }
